@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Html5QrcodeScanner } from 'html5-qrcode';
+import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode';
 import './QRScanner.css';
 
 function QRScanner() {
@@ -9,14 +9,18 @@ function QRScanner() {
   useEffect(() => {
     const scanner = new Html5QrcodeScanner(
       "qr-reader",
-      { fps: 10, qrbox: 250 },
+      {
+        fps: 10,
+        qrbox: 250,
+        rememberLastUsedCamera: true,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA] // ensures real camera mode
+      },
       false
     );
 
     scanner.render(
       (decodedText) => {
         try {
-          // Support both formats: URL-like or JSON-like
           if (decodedText.startsWith('payflex://merchant')) {
             const url = new URL(decodedText.replace('payflex://', 'https://'));
             const merchantId = url.searchParams.get('id');

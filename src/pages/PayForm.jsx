@@ -48,10 +48,19 @@ function PayForm() {
     }
 
     try {
-      await axios.post('http://localhost:8080/api/payment-requests', formData);
+      await axios.post(
+        'http://localhost:8081/api/payment-requests',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
       navigate('/confirmation');
     } catch (err) {
-      console.error(err);
+      console.error("Axios POST error:", err.response?.data || err.message);
+      alert("Payment could not be processed. Please try again.");
       navigate('/error');
     }
   };
