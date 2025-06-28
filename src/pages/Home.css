@@ -1,0 +1,61 @@
+.home-bg {
+  height: 100vh;
+  background: linear-gradient(to right, #f7f2ff, #f0e7ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-card {
+  background: #ffffff;
+  border: 2px solid #6A0DAD;
+  border-radius: 16px;
+  padding: 40px 50px;
+  box-shadow: 0 0 20px rgba(106, 13, 173, 0.2);
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+}
+
+.logo-text {
+  font-size: 36px;
+  font-weight: 700;
+  color: #6A0DAD;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button {
+  background-color: #6A0DAD;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #8a2be2;
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 18px;
+}

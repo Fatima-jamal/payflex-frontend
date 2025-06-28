@@ -1,0 +1,21 @@
+.qr-container {
+  text-align: center;
+  margin-top: 60px;
+}
+
+h2 {
+  color: #6A0DAD;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+#qr-reader {
+  margin: auto;
+  width: 350px;
+  max-width: 90%;
+  border: 2px solid #6A0DAD;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(106, 13, 173, 0.1);
+}
