@@ -18,6 +18,9 @@ function PayForm() {
 
   const [error, setError] = useState('');
 
+  // Read from .env or default to localhost for fallback
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8081';
+
   useEffect(() => {
     const state = location.state || {};
     const params = new URLSearchParams(location.search);
@@ -31,9 +34,9 @@ function PayForm() {
   }, [location]);
 
   const handleChange = (e) => {
-    setFormData({ 
-      ...formData, 
-      [e.target.name]: e.target.value 
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -48,19 +51,14 @@ function PayForm() {
     }
 
     try {
-      await axios.post(
-        'http://localhost:8081/api/payment-requests',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+      await axios.post(`${BACKEND_URL}/api/payment-requests`, formData, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      // Simulated payment success
       navigate('/confirmation');
     } catch (err) {
-      console.error("Axios POST error:", err.response?.data || err.message);
-      alert("Payment could not be processed. Please try again.");
+      console.error("Payment error:", err.response?.data || err.message);
       navigate('/error');
     }
   };
