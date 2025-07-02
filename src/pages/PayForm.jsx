@@ -18,7 +18,7 @@ function PayForm() {
 
   const [error, setError] = useState('');
 
-  // Read from .env or default to localhost for fallback
+  // Dynamically read backend URL
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8081';
 
   useEffect(() => {
@@ -51,14 +51,26 @@ function PayForm() {
     }
 
     try {
-      await axios.post(`${BACKEND_URL}/api/payment-requests`, formData, {
+      console.log('Submitting to:', `${BACKEND_URL}/api/payment-requests`);
+      console.log('Payload:', formData);
+
+      const response = await axios.post(`${BACKEND_URL}/api/payment-requests`, formData, {
         headers: { 'Content-Type': 'application/json' }
       });
 
-      // Simulated payment success
-      navigate('/confirmation');
+      console.log('Response:', response);
+
+      if (response.status === 200 || response.status === 201) {
+        navigate('/confirmation');
+      } else {
+        console.error('Unexpected response status:', response.status);
+        navigate('/error');
+      }
     } catch (err) {
-      console.error("Payment error:", err.response?.data || err.message);
+      console.error('Error during payment submission:', err);
+      if (err.response) {
+        console.error('Backend error:', err.response.status, err.response.data);
+      }
       navigate('/error');
     }
   };
