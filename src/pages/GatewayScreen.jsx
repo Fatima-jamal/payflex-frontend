@@ -14,19 +14,19 @@ function GatewayScreen() {
       return;
     }
 
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    console.log("Resolved API Base URL:", BASE_URL); // ✅ Debug log
+
     const timeout = setTimeout(async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/payment-requests`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              ...formData,
-              merchantId: parseInt(formData.merchantId, 10)
-            }),
-          }
-        );
+        const response = await fetch(`${BASE_URL}/payment-requests`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formData,
+            merchantId: parseInt(formData.merchantId, 10)
+          }),
+        });
 
         if (response.ok) {
           navigate('/confirmation');
@@ -38,7 +38,7 @@ function GatewayScreen() {
         console.error("Gateway error:", error);
         navigate('/error');
       }
-    }, 3000); // Simulated 3s delay
+    }, 3000); // Simulated 3-second processing delay
 
     return () => clearTimeout(timeout);
   }, [formData, navigate]);
