@@ -1,0 +1,66 @@
+.card-entry-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f0ff;
+}
+
+.card-entry-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #9b59b6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 400px;
+}
+
+.card-entry-box h2 {
+  color: #9b59b6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-entry-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-entry-box label {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.card-entry-box input {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-row div {
+  flex: 1;
+}
+
+.card-entry-box button {
+  background-color: #6a1b9a;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.card-entry-box button:hover {
+  background-color: #4a0072;
+}

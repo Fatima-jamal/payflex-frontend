@@ -1,108 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './PayForm.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function PayForm() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const [formData, setFormData] = useState({
     merchantId: '',
-    customerName: '',
+    amount: '',
+    description: '',
+    name: '',
     email: '',
     phone: '',
-    amount: '',
-    description: ''
   });
 
-  const [error, setError] = useState('');
-
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8081';
-
-  useEffect(() => {
-    const state = location.state || {};
-    const params = new URLSearchParams(location.search);
-
-    setFormData(prev => ({
-      ...prev,
-      merchantId: state.merchantId || params.get('merchantId') || '',
-      amount: state.amount || params.get('amount') || '',
-      description: state.description || params.get('description') || ''
-    }));
-  }, [location]);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
 
-    const { customerName, email, phone, amount, merchantId } = formData;
-    if (!customerName || !email || !phone || !amount || !merchantId) {
-      setError('Please fill all required fields.');
-      return;
+    // Basic validation
+    for (const key in formData) {
+      if (!formData[key]) {
+        alert('Please fill out all fields');
+        return;
+      }
     }
 
-    const payload = {
-      ...formData,
-      merchantId: parseInt(merchantId, 10) // ✅ FIX: Ensure Integer type
-    };
-
-    try {
-      console.log('Submitting to:', `${BACKEND_URL}/api/payment-requests`);
-      console.log('Payload:', payload);
-
-      const response = await axios.post(`${BACKEND_URL}/api/payment-requests`, payload, {
-        headers: { 'Content-Type': 'application/json' }
-      });
-
-      if (response.status === 200 || response.status === 201) {
-        navigate('/confirmation');
-      } else {
-        console.error('Unexpected response:', response.status);
-        navigate('/error');
-      }
-    } catch (err) {
-      console.error('Payment error:', err);
-      if (err.response) {
-        console.error('Backend response:', err.response.status, err.response.data);
-      }
-      navigate('/error');
-    }
-  };
+    // Go to Card Entry Screen
+    navigate('/card-entry', { state: formData });
+  }
 
   return (
-    <div className="payform-container">
-      <h2>Make a Payment</h2>
-      <form onSubmit={handleSubmit} className="payment-form">
-        {error && <p className="error">{error}</p>}
+    <div className="form-container">
+      <form className="payment-form" onSubmit={handleSubmit}>
+        <h2>Pay with PayFlex</h2>
 
-        <label>Merchant ID*</label>
+        <label>Merchant ID</label>
         <input
           type="text"
           name="merchantId"
           value={formData.merchantId}
           onChange={handleChange}
           required
-          readOnly={!!formData.merchantId}
         />
 
-        <label>Customer Name*</label>
+        <label>Customer Name</label>
         <input
           type="text"
-          name="customerName"
-          value={formData.customerName}
+          name="name"
+          value={formData.name}
           onChange={handleChange}
           required
         />
 
-        <label>Email*</label>
+        <label>Email</label>
         <input
           type="email"
           name="email"
@@ -111,7 +68,7 @@ function PayForm() {
           required
         />
 
-        <label>Phone Number*</label>
+        <label>Phone</label>
         <input
           type="text"
           name="phone"
@@ -120,7 +77,7 @@ function PayForm() {
           required
         />
 
-        <label>Amount (PKR)*</label>
+        <label>Amount (PKR)</label>
         <input
           type="number"
           name="amount"
@@ -134,9 +91,10 @@ function PayForm() {
           name="description"
           value={formData.description}
           onChange={handleChange}
+          required
         />
 
-        <button type="submit">Submit Payment</button>
+        <button type="submit">Proceed to Payment</button>
       </form>
     </div>
   );
