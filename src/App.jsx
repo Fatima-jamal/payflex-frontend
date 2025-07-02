@@ -7,6 +7,7 @@ import CardEntryScreen from './pages/CardEntryScreen';
 import GatewayScreen from './pages/GatewayScreen';
 import Confirmation from './pages/Confirmation';
 import ErrorPage from './pages/Error';
+import QRScanner from './pages/QRScanner'; // ✅ Add this line
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/card-entry" element={<CardEntryScreen />} />
         <Route path="/gateway" element={<GatewayScreen />} />
         <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/scan" element={<QRScanner />} /> {/* ✅ Add this line */}
         <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </Router>
