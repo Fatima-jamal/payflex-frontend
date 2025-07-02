@@ -18,7 +18,6 @@ function PayForm() {
 
   const [error, setError] = useState('');
 
-  // Dynamically read backend URL
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8081';
 
   useEffect(() => {
@@ -50,26 +49,29 @@ function PayForm() {
       return;
     }
 
+    const payload = {
+      ...formData,
+      merchantId: parseInt(merchantId, 10) // ✅ FIX: Ensure Integer type
+    };
+
     try {
       console.log('Submitting to:', `${BACKEND_URL}/api/payment-requests`);
-      console.log('Payload:', formData);
+      console.log('Payload:', payload);
 
-      const response = await axios.post(`${BACKEND_URL}/api/payment-requests`, formData, {
+      const response = await axios.post(`${BACKEND_URL}/api/payment-requests`, payload, {
         headers: { 'Content-Type': 'application/json' }
       });
-
-      console.log('Response:', response);
 
       if (response.status === 200 || response.status === 201) {
         navigate('/confirmation');
       } else {
-        console.error('Unexpected response status:', response.status);
+        console.error('Unexpected response:', response.status);
         navigate('/error');
       }
     } catch (err) {
-      console.error('Error during payment submission:', err);
+      console.error('Payment error:', err);
       if (err.response) {
-        console.error('Backend error:', err.response.status, err.response.data);
+        console.error('Backend response:', err.response.status, err.response.data);
       }
       navigate('/error');
     }
