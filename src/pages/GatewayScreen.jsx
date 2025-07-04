@@ -13,6 +13,8 @@ function GatewayScreen() {
       return;
     }
 
+    console.log("Submitting payment form:", formData);
+
     const timeout = setTimeout(async () => {
       try {
         const response = await fetch(
@@ -21,8 +23,12 @@ function GatewayScreen() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              ...formData,
               merchantId: parseInt(formData.merchantId, 10),
+              customerName: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              amount: parseFloat(formData.amount),
+              description: formData.description
             }),
           }
         );
@@ -46,8 +52,8 @@ function GatewayScreen() {
     <div className="gateway-container">
       <div className="gateway-box">
         <h2>Processing Payment...</h2>
-        {formData?.cardholderName && (
-          <p>Cardholder: <strong>{formData.cardholderName}</strong></p>
+        {formData?.name && (
+          <p>Customer: <strong>{formData.name}</strong></p>
         )}
         <p>Please wait while we simulate your payment.</p>
         <div className="loader"></div>

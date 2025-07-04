@@ -24,7 +24,7 @@ function PayForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Basic validation
+    // Validate all fields
     for (const key in formData) {
       if (!formData[key]) {
         alert('Please fill out all fields');
@@ -32,9 +32,14 @@ function PayForm() {
       }
     }
 
-    // Go to Card Entry Screen
-    navigate('/card-entry', { state: formData });
-  }
+    // Navigate with full data (card-entry -> gateway -> backend)
+    navigate('/card-entry', {
+      state: {
+        ...formData,
+        status: 'Paid', // ✅ Required by backend column
+      },
+    });
+  };
 
   return (
     <div className="form-container">
