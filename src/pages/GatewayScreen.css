@@ -1,55 +1,33 @@
 .gateway-container {
+  background: url('/payform.jpg') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #fdf8ff;
 }
 
 .gateway-box {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly opaque white for readability */
   border: 2px solid #a855f7;
   padding: 30px;
   border-radius: 12px;
   width: 350px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
 }
 
 .gateway-box h2 {
   color: #6b21a8;
   margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .gateway-box p {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-size: 16px;
   color: #333;
-}
-
-.gateway-box input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.gateway-box button {
-  background-color: #6b21a8;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 15px;
-  width: 100%;
-}
-
-.gateway-box button:disabled {
-  background-color: #b794f4;
-  cursor: not-allowed;
 }
 
 .loader {
@@ -70,5 +48,20 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .gateway-box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .gateway-box h2 {
+    font-size: 20px;
+  }
+
+  .gateway-box p {
+    font-size: 15px;
   }
 }

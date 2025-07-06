@@ -1,21 +1,106 @@
 .qr-container {
-  text-align: center;
-  margin-top: 60px;
+  position: relative;
+  min-height: 100vh;
+  background: url('/payform.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
 }
 
-h2 {
+.qr-overlay {
+  background-color: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 0 15px rgba(106, 13, 173, 0.1);
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+
+.qr-title {
+  font-size: 26px;
   color: #6A0DAD;
-  font-size: 24px;
-  margin-bottom: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.qr-subtitle {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 30px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #qr-reader {
-  margin: auto;
-  width: 350px;
-  max-width: 90%;
-  border: 2px solid #6A0DAD;
-  border-radius: 12px;
+  width: 100%;
+  background: #ffffff;
   padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(106, 13, 173, 0.1);
+  border: 2px solid #6A0DAD;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(106, 13, 173, 0.15);
+  box-sizing: border-box;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 480px) {
+  .qr-title {
+    font-size: 22px;
+  }
+
+  .qr-subtitle {
+    font-size: 14px;
+  }
+
+  #qr-reader {
+    padding: 16px;
+  }
+
+  .qr-overlay {
+    padding: 30px 20px;
+  }
+}
+
+/* QR Library Styling Overrides */
+#qr-reader__dashboard_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+#qr-reader__scan_region img {
+  max-width: 120px;
+  margin-bottom: 12px;
+}
+
+#qr-reader button {
+  background-color: #6A0DAD !important;
+  color: white !important;
+  font-weight: bold;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+#qr-reader button:hover {
+  background-color: #8a2be2 !important;
+}
+
+#qr-reader__dashboard_section_csr span {
+  color: #6A0DAD;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+  margin-top: 8px;
+}
+
+#qr-reader__camera_permission_button {
+  margin-bottom: 10px;
 }

@@ -1,39 +1,63 @@
-.payform-container {
-  max-width: 550px;
-  margin: 50px auto;
-  background-color: #fff;
-  border: 2px solid #6A0DAD;
-  border-radius: 12px;
-  padding: 30px 40px;
-  box-shadow: 0 0 15px rgba(106, 13, 173, 0.1);
+.form-bg {
+  background: url('/payform.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h2 {
-  text-align: center;
-  color: #6A0DAD;
-  font-size: 24px;
-  margin-bottom: 25px;
+.form-overlay {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.payform-container {
+  max-width: 650px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 2px solid #6A0DAD;
+  border-radius: 16px;
+  padding: 45px 40px; /* vertical + horizontal padding now */
+  box-shadow: 0 0 15px rgba(106, 13, 173, 0.15);
+  box-sizing: border-box;
 }
 
 .payment-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  color: #6A0DAD;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 label {
-  margin: 10px 0 5px;
+  margin: 14px 0 6px;
   font-weight: 600;
   color: #333;
+  font-size: 15px;
 }
 
 input,
 textarea {
-  padding: 12px;
+  padding: 14px 18px;
   font-size: 15px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  transition: border 0.2s ease;
-  margin-bottom: 15px;
+  border-radius: 10px;
+  transition: border-color 0.2s ease;
+  margin-bottom: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
 }
 
 input:focus,
@@ -45,23 +69,40 @@ textarea:focus {
 button {
   background-color: #6A0DAD;
   color: #fff;
-  padding: 12px 18px;
+  padding: 16px;
   font-size: 16px;
-  border: none;
-  border-radius: 8px;
   font-weight: bold;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
+  margin-top: 15px;
+  width: 100%;
 }
 
 button:hover {
   background-color: #8a2be2;
 }
 
-.error {
-  color: red;
-  margin-bottom: 12px;
-  font-weight: bold;
-  text-align: center;
+@media screen and (max-width: 480px) {
+  .payform-container {
+    padding: 30px 20px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input,
+  textarea {
+    padding: 12px;
+  }
+
+  button {
+    font-size: 15px;
+  }
 }

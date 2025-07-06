@@ -1,19 +1,21 @@
 .home-bg {
   height: 100vh;
-  background: linear-gradient(to right, #f7f2ff, #f0e7ff);
+  background: url('/ca.jpg') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .home-card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.92);
   border: 2px solid #6A0DAD;
   border-radius: 16px;
   padding: 40px 50px;
-  box-shadow: 0 0 20px rgba(106, 13, 173, 0.2);
+  box-shadow: 0 0 20px rgba(106, 13, 173, 0.25);
   max-width: 450px;
-  width: 90%;
+  width: 100%;
   text-align: center;
 }
 
@@ -58,4 +60,23 @@ button:hover {
 .icon {
   margin-right: 10px;
   font-size: 18px;
+}
+
+@media screen and (max-width: 480px) {
+  .home-card {
+    padding: 30px 20px;
+  }
+
+  .logo-text {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 14px;
+  }
 }

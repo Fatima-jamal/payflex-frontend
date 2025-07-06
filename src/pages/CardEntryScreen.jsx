@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CardEntryScreen.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -7,14 +7,16 @@ function CardEntryScreen() {
   const location = useLocation();
   const formData = location.state;
 
+  const [cardholder, setCardholder] = useState('');
+
   const handleCardSubmit = (e) => {
     e.preventDefault();
 
-    // Simulate basic card validation
     const dummyCardValid = true;
 
     if (dummyCardValid) {
-      navigate('/gateway', { state: formData });
+      const enrichedData = { ...formData, cardholder };
+      navigate('/gateway', { state: enrichedData });
     } else {
       alert("Invalid card");
     }
@@ -28,7 +30,22 @@ function CardEntryScreen() {
     <div className="card-entry-container">
       <div className="card-entry-box">
         <h2>Enter Card Details</h2>
+
+        <div className="merchant-meta">
+          <p><strong>Merchant:</strong> {formData.merchantId}</p>
+          <p><strong>Amount:</strong> PKR {formData.amount}</p>
+        </div>
+
         <form onSubmit={handleCardSubmit}>
+          <label>Cardholder Name</label>
+          <input
+            type="text"
+            placeholder="e.g. Fatima Jamal"
+            value={cardholder}
+            onChange={(e) => setCardholder(e.target.value)}
+            required
+          />
+
           <label>Card Number</label>
           <input type="text" required placeholder="1234 5678 9012 3456" />
 

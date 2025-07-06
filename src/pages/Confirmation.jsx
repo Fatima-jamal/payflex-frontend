@@ -8,15 +8,17 @@ function Confirmation() {
 
   return (
     <div className="confirmation-container">
-      <div style={{ fontSize: '40px', color: '#28a745', marginBottom: '10px' }}>✔️</div>
-      <h2>Payment Successful!</h2>
-      <p>Your payment has been processed.</p>
-      <p><strong>Transaction ID:</strong> {transactionId}</p>
-      <p>Thank you for using PayFlex.</p>
+      <div className="confirmation-box">
+        <div className="confirmation-icon">✔️</div>
+        <h2>Payment Successful!</h2>
+        <p>Your payment has been processed.</p>
+        <p><strong>Transaction ID:</strong> {transactionId}</p>
+        <p>Thank you for using PayFlex.</p>
 
-      <div className="confirmation-buttons">
-        <button onClick={() => navigate('/pay')}>Make Another Payment</button>
-        <button onClick={() => navigate('/')}>Go to Home</button>
+        <div className="confirmation-buttons">
+          <button onClick={() => navigate('/pay')}>Make Another Payment</button>
+          <button onClick={() => navigate('/')}>Go to Home</button>
+        </div>
       </div>
     </div>
   );

@@ -1,24 +1,40 @@
 .confirmation-container {
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 30px;
-  background-color: #ffffff;
+  background: url('/payform.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation-box {
+  background-color: rgba(255, 255, 255, 0.95);
   border: 2px solid #6A0DAD;
   border-radius: 12px;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
   text-align: center;
-  box-shadow: 0 0 15px rgba(106, 13, 173, 0.15);
+  box-shadow: 0 0 18px rgba(106, 13, 173, 0.2);
 }
 
-.confirmation-container h2 {
+.confirmation-box h2 {
   color: #28a745;
-  font-size: 24px;
+  font-size: 26px;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
-.confirmation-container p {
+.confirmation-box p {
   font-size: 16px;
   color: #333;
   margin-bottom: 10px;
+}
+
+.confirmation-icon {
+  font-size: 40px;
+  color: #6A0DAD;
+  margin-bottom: 15px;
 }
 
 .confirmation-buttons {
@@ -39,4 +55,27 @@
   cursor: pointer;
   font-size: 15px;
   width: 200px;
+}
+
+.confirmation-buttons button:hover {
+  background-color: #8a2be2;
+}
+
+@media screen and (max-width: 480px) {
+  .confirmation-box {
+    padding: 25px;
+  }
+
+  .confirmation-box h2 {
+    font-size: 22px;
+  }
+
+  .confirmation-box p {
+    font-size: 15px;
+  }
+
+  .confirmation-buttons button {
+    font-size: 14px;
+    width: 90%;
+  }
 }

@@ -27,7 +27,7 @@ function QRScanner() {
               merchantId: qrData.merchantId,
               amount: qrData.amount,
               description: qrData.description,
-              customerName: '', // keep blank, will be entered in card screen
+              customerName: '',
               email: '',
               phone: '',
             };
@@ -36,15 +36,15 @@ function QRScanner() {
               navigate('/card-entry', { state: enrichedData });
             });
           } else {
-            alert("Invalid QR code data.");
+            alert('Invalid QR code data.');
           }
         } catch (error) {
-          alert("Failed to parse QR code.");
+          alert('Failed to parse QR code.');
           console.error(error);
         }
       },
       (err) => {
-        console.warn("QR Code scan error:", err);
+        console.warn('QR Code scan error:', err);
       }
     );
 
@@ -55,8 +55,13 @@ function QRScanner() {
 
   return (
     <div className="qr-container">
-      <h2>Scan QR Code</h2>
-      <div id="qr-reader" style={{ width: '300px', margin: 'auto' }}></div>
+      <div className="qr-overlay">
+        <h2 className="qr-title">Scan QR Code to Begin Payment</h2>
+        <p className="qr-subtitle">
+          Allow camera access and point to a valid PayFlex QR code.
+        </p>
+        <div id="qr-reader"></div>
+      </div>
     </div>
   );
 }
